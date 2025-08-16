@@ -1,54 +1,69 @@
-// Welcome alert
+// Welcome message
 window.onload = () => {
   alert("Welcome to the Skills Test!");
-  updateStudentCount();
+  if (document.getElementById("studentCount")) {
+    updateCount();
+  }
 };
 
-// Theme toggle
-document.getElementById("themeToggle").addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-});
+// Theme change
+if (document.getElementById("themeBtn")) {
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+  });
+}
 
-// Student counter
-function updateStudentCount() {
-  const count = document.querySelectorAll("#studentsTable tr").length - 1;
-  document.getElementById("studentCount").textContent = count;
+// Update student count
+function updateCount() {
+  let rows = document.querySelectorAll("#studentsTable tbody tr").length;
+  document.getElementById("studentCount").textContent = rows;
 }
 
 // Add new student
-document.getElementById("addStudentForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const name = document.getElementById("studentName").value;
-  const age = document.getElementById("studentAge").value;
-  const skill = document.getElementById("studentSkill").value;
+if (document.getElementById("addStudentForm")) {
+  document.getElementById("addStudentForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    let name = document.getElementById("sName").value;
+    let age = document.getElementById("sAge").value;
+    let skill = document.getElementById("sSkill").value;
 
-  if (!name || !age || !skill) {
-    alert("Fill all fields!");
-    return;
-  }
+    if (!name || !age || !skill) {
+      alert("All fields are required!");
+      return;
+    }
 
-  const table = document.getElementById("studentsTable");
-  const row = table.insertRow();
-  row.insertCell(0).textContent = name;
-  row.insertCell(1).textContent = age;
-  row.insertCell(2).textContent = skill;
-
-  updateStudentCount();
-});
+    let row = document.createElement("tr");
+    row.innerHTML = `<td>${name}</td><td>${age}</td><td>${skill}</td>`;
+    document.querySelector("#studentsTable tbody").appendChild(row);
+    updateCount();
+  });
+}
 
 // Contact form validation
-document.getElementById("contactForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const message = document.getElementById("message").value;
-  const msgBox = document.getElementById("formMsg");
+if (document.getElementById("contactForm")) {
+  document.getElementById("contactForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    let n = document.getElementById("cName").value;
+    let em = document.getElementById("cEmail").value;
+    let m = document.getElementById("cMsg").value;
+    let msgBox = document.getElementById("formMessage");
 
-  if (!name || !email || !message) {
-    msgBox.textContent = "Please fill in all fields.";
-    msgBox.style.color = "red";
-  } else {
-    msgBox.textContent = "Form submitted successfully!";
-    msgBox.style.color = "green";
-  }
-});
+    if (!n || !em || !m) {
+      msgBox.textContent = "Please fill all fields!";
+      msgBox.style.color = "red";
+    } else {
+      msgBox.textContent = "Form submitted successfully!";
+      msgBox.style.color = "green";
+    }
+  });
+}
+
+// Sort students by age
+if (document.getElementById("sortBtn")) {
+  document.getElementById("sortBtn").addEventListener("click", () => {
+    let table = document.getElementById("studentsTable").tBodies[0];
+    let rows = Array.from(table.rows);
+    rows.sort((a, b) => parseInt(a.cells[1].textContent) - parseInt(b.cells[1].textContent));
+    rows.forEach(r => table.appendChild(r));
+  });
+}

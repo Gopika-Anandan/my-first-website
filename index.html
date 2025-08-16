@@ -1,78 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Student Skills Test</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Student Skills Test</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
     <h1>Welcome to the Web Skills Test</h1>
-    <button id="themeToggle">Change Theme</button>
+    <button id="themeBtn">Change Theme</button>
   </header>
 
   <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
-  <section id="home">
-    <h2>Students</h2>
-    <img src="https://via.placeholder.com/400" alt="Students working together" />
-
+  <section>
+    <h2>Student Details</h2>
     <p>Total Students: <span id="studentCount">0</span></p>
 
+    <button id="sortBtn">Sort by Age</button>
+
     <table id="studentsTable">
-      <tr>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Skill</th>
-      </tr>
-      <tr>
-        <td>Gopika</td>
-        <td>21</td>
-        <td>HTML</td>
-      </tr>
-      <tr>
-        <td>Janani</td>
-        <td>22</td>
-        <td>CSS</td>
-      </tr>
-      <tr>
-        <td>Ranjani</td>
-        <td>23</td>
-        <td>JavaScript</td>
-      </tr>
+      <thead>
+        <tr><th>Name</th><th>Age</th><th>Skill</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Kamal</td><td>20</td><td>HTML</td></tr>
+        <tr><td>Ranjani</td><td>21</td><td>CSS</td></tr>
+        <tr><td>Janani</td><td>22</td><td>JavaScript</td></tr>
+        <tr><td>Ranjani</td><td>26</td><td>reactjs</td></tr>
+      </tbody>
     </table>
 
-    <form id="addStudentForm">
-      <input type="text" id="studentName" placeholder="Name" />
-      <input type="number" id="studentAge" placeholder="Age" />
-      <input type="text" id="studentSkill" placeholder="Skill" />
+    <h3>Add a New Student</h3>
+    <form id="addStudentForm" class="form-box">
+      <label>Name:<br><input type="text" id="sName" placeholder="Enter student name"></label>
+      <label>Age:<br><input type="number" id="sAge" placeholder="Enter age"></label>
+      <label>Skill:<br><input type="text" id="sSkill" placeholder="Enter skill"></label>
       <button type="submit">Add Student</button>
     </form>
   </section>
 
-  <section id="about">
-    <h2>About</h2>
-    <p>This page tests HTML, CSS, and JavaScript skills.</p>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <form id="contactForm">
-      <label>Name: <input type="text" id="name" /></label>
-      <label>Email: <input type="email" id="email" /></label>
-      <label>Message: <textarea id="message"></textarea></label>
-      <button type="submit">Submit</button>
-      <p id="formMsg"></p>
-    </form>
-  </section>
-
   <footer>
-    <p>&copy; 2025 Student Skills Test</p>
+    <p>© 2025 Student Skills Test</p>
   </footer>
 
   <script src="script.js"></script>
